@@ -1,0 +1,74 @@
+Current book summary 
+<br>
+
+
+<% for(var i=0; i < result.length; i++) { %>
+
+	<%= result[i].title %>
+	<br>
+
+  <% } %>
+<br><br>
+
+<div class = "noteTitle"> 
+<a href="/AndyBookSummariesForm"> Click here to add note </a>
+</div>
+
+<!DOCTYPE html>
+
+<html lang="en" class="has-lab-nav-bottom lab-theme-light">
+<head>
+   <title>Book Summary Tracker</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/stylesheet.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+      
+
+
+<body>
+   
+ 
+<h3 class = "noteTitle"> Books I'm Reading </h3>
+
+
+
+
+<div class="table-responsive"> 
+<table class="table">
+	
+  <thead class = "thead-dark">
+    <tr>
+      <th scope="col">User</th>
+
+
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <tr>
+      
+      <td><a href="/getAndyBookSummaries"> Andy </a></td>
+      
+    </tr>
+    <tr>
+      <td>Nancy</td>
+    </tr>
+    <tr>
+      <td>Austin</td>
+    </tr>
+
+
+  </tbody>
+</table>
+
+</div>
+
+
+
+ 
+
+  
+  </html>

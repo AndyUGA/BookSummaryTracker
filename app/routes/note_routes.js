@@ -20,7 +20,7 @@ module.exports = function(app, db) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
 
-				res.render('AndyBookSummaries', {result: result});
+				res.render('AndyCurrentBooks', {result: result});
 			}
 		});
 	});
@@ -48,7 +48,7 @@ module.exports = function(app, db) {
 	app.post('/AndyBookSummaries/create', (req,res) => {
 
 		const note = {  title: req.body.title, content: req.body.content };
-		db.collection('notes').insert(note, (err, result) => {
+		db.collection('AndyBookSummaries').insert(note, (err, result) => {
 			if(err) {
 				res.send({'error': 'An error has occurred'});
 			} else {
