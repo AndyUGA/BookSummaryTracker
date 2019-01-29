@@ -281,6 +281,7 @@ module.exports = function(app, db) {
 
 
 
+
 	//Display form to append to book summary
 	app.get('/Austin/getAppendForm/:id', (req, res) => {
 		const id = req.params.id;
@@ -292,10 +293,14 @@ module.exports = function(app, db) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
 
-				res.render('Ausitn/appendBookSummary', {BookInfo: result, id : id});
+				res.render('Austin/appendBookSummary', {BookInfo: result, id : id});
 			}
 		});
 	});
+
+
+
+
 	
 
 	//Update book summary based on id
