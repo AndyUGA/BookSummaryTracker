@@ -51,24 +51,44 @@ module.exports = function(app, db) {
 				currentTitle = item.title;
 
 				var tempLine = "";
-				var oneLineConent = [];
+				var oneLineContent = [];
+				var lineAmount = 0;
 
 				//currentContent = "abcde\nkdj\nfjkad";
+				console.log("currentContent.length is " + item.content.length);
+				console.log("currentContent is " + item.content);
 
-				for(var i = 0; i < currentContent.length;i++)
+				for(var i = 0; i < currentContent.length; i++)
 				{
-					if(currentContent.substring(i,i+2) != '\n')
+					//console.log('i is ' + i);
+					console.log("Checking " + currentContent.substring(i,i+2));
+					if(currentContent.substring(i,i+2) != 'zz')
 					{
-						tempLine = currentContent.substring(i);
+						tempLine += currentContent.substring(i, i + 1);
+
 					}
-					oneLineConent.push(tempLine);
+					else 
+					{
+						console.log("Pushing");
+						console.log(tempLine);
+						oneLineContent.push(tempLine);
+						lineAmount++;
+						tempLine = "";
+						i += 1;
+					}
+					
+
 				}
+					//oneLineContent.push(tempLine);
+					//console.log('78');
+					//console.log(oneLineContent);
 
 
-
+				console.log("oneLineContent");
+				console.log(oneLineContent);
 
 				//Render BookSummary.ejs from /Views/Andy/BookSummary
-				res.render('Andy/BookSummary', {BookInfo: item, id: id});
+				res.render('Andy/BookSummary', {BookInfo: item, oneLineContent: oneLineContent, id: id, lineAmount: lineAmount});
 			}
 		});
 	});
@@ -141,16 +161,12 @@ module.exports = function(app, db) {
 		const details = {'_id': new ObjectID(id)};
 
 
-		console.log("132");
-		console.log("Current content is " + currentContent);
-		console.log("Current title is " + currentTitle);
-
-		const note = {  title: currentTitle , content: currentContent + req.body.content};
+		const note = {  title: currentTitle , content: currentContent + req.body.content + "zz"};
 		db.collection('AndyBookSummaries').update(details, note, (err, item) => {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-				console.log("Redirecting user")
+
 				res.redirect('/Andy/getBookSummary/' + id);
 				//res.redirect('/');
 			}

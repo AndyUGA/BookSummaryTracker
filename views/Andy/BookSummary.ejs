@@ -22,6 +22,7 @@
     <tr>
       <th scope="col"><%= BookInfo.title %></th>
 
+       
 
     </tr>
   </thead>
@@ -29,13 +30,12 @@
 
   <tbody>
 
-    <% for(var i=0; i < BookInfo.content.length; i++) { %>
+    <% for(var i=0; i < lineAmount; i++) { %>
     <tr>
       
       <td>
-        <%if (BookInfo.content.substring(i, i+2) != '\n') { %>
-           <%= BookInfo.content.substring(i,i+2) %>
-          <% } %>
+        <%= oneLineContent[i]%>
+        
 
       </td>
       
