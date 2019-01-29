@@ -111,7 +111,7 @@ module.exports = function(app, db) {
 	//Create book summary 
 	app.post('/Andy/createBookSummary', (req,res) => {
 
-		const note = {  title: req.body.title, content: req.body.content };
+		const note = {  title: req.body.title, content: req.body.content + "zz"};
 		db.collection('AndyBookSummaries').insert(note, (err, result) => {
 			if(err) {
 				res.send({'error': 'An error has occurred'});
