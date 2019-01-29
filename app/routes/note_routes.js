@@ -32,7 +32,7 @@ module.exports = function(app, db) {
 	});
 
 	//Get Book summary information based on id
-	app.get('/getBookSummary/content/:id', (req, res) => {
+	app.get('/Andy/getBookSummary/:id', (req, res) => {
 		//Get id from URL 
 		const id = req.params.id;
 
@@ -88,7 +88,7 @@ module.exports = function(app, db) {
 
 
 	//Display form to append to book summary
-	app.get('/appendBookSummary/:id', (req, res) => {
+	app.get('/getAppendForm/:id', (req, res) => {
 		const id = req.params.id;
 		var collection = db.collection("AndyBookSummaries");
 
@@ -98,30 +98,15 @@ module.exports = function(app, db) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
 
-				res.render('appendBookSummary', {BookInfo: result, id : id});
+				res.render('Andy/appendBookSummary', {BookInfo: result, id : id});
 			}
 		});
 	});
-
-
-
-
 	
 
-
-
-	
-
-
-	
-
-	
-
-	//Update existing note based on id
+	//Update book summary based on id
 	app.put('/AndyBookSummaries/content/:id', (req, res) => {
 		const id = req.params.id;
-		console.log('152');
-		console.log(res.content);
 		const note = {content: res.content + " " +  req.body.content,title: res.title };
 		//const note = {content: req.body.content,title: req.body.title };
 
