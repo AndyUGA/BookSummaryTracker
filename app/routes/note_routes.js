@@ -15,17 +15,18 @@ module.exports = function(app, db) {
 	
 
 	//Display page to add book summary to database
-	app.get('/AndyBookReading', (req, res) => {
+	app.get('/Andy/ListOfBooks', (req, res) => {
 	
+		//Get information from mLab database 
 		var collection = db.collection("AndyBookSummaries");
 
-
+		//Returns all info in mLab database into JSON format
 		collection.find({}).toArray(function (err, result) {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-
-				res.render('AndyCurrentBooks', {result: result});
+				//Render 
+				res.render('Andy/ListOfBooks', {result: result});
 			}
 		});
 	});
@@ -81,24 +82,6 @@ module.exports = function(app, db) {
 
 
 
-
-
-
-	//Displays all notes in database
-	app.get('/notes', (req, res) => {
-
-		var collection = db.collection("notes");
-		collection.find({}).toArray(function (err, result) {
-			if(err) {
-				res.send({ 'error': ' An error has occurred'});
-			} else {
-				res.send(result);
-
-			}
-		});
-	});
-
-	
 
 	
 
