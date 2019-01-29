@@ -14,7 +14,7 @@ module.exports = function(app, db) {
 
 	
 
-	//Display page to add book summary to database
+	//Display list of books being read by user (ListOfBooks.ejs)
 	app.get('/Andy/ListOfBooks', (req, res) => {
 	
 		//Get information from mLab database 
@@ -25,14 +25,35 @@ module.exports = function(app, db) {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-				//Render 
+				//Render ListOfBooks.ejs in views directory
 				res.render('Andy/ListOfBooks', {result: result});
 			}
 		});
 	});
 
+	//Get Book summary information based on id
+	app.get('/BookSummary/content/:id', (req, res) => {
+		//Get id from URL 
+		const id = req.params.id;
+
+		//Convert id from URL to object ID 
+		const details = {'_id': new ObjectID(id)};
+
+		//Find info about book summary based on the object id
+		db.collection('AndyBookSummaries').findOne(details, (err, item) => {
+			if(err) {
+				res.send({ 'error': ' An error has occurred'});
+			} else {
+				//Render BookSummary.ejs from /Views/Andy/BookSummary
+				res.render('Andy/BookSummary', {BookInfo: item, id: id});
+			}
+		});
+	});
+
+
+
 	//Display form to create book summary
-	app.get('/AndyBookSummariesForm/:id', (req, res) => {
+	app.get('/Andy/createBookSummaryForm', (req, res) => {
 		
 
 		var collection = db.collection("AndyBookSummaries");
@@ -43,10 +64,28 @@ module.exports = function(app, db) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
 
-				res.render('createBookSummary');
+				res.render('Andy/createBookSummary');
 			}
 		});
 	});
+
+
+	//Create book summary 
+	app.post('/Andy/createBookSummary', (req,res) => {
+
+		const note = {  title: req.body.title, content: req.body.content };
+		db.collection('AndyBookSummaries').insert(note, (err, result) => {
+			if(err) {
+				res.send({'error': 'An error has occurred'});
+			} else {
+				res.redirect('/Andy/ListOfBooks');
+			}
+		});
+	});
+
+
+
+
 
 	//Display form to append to book summary
 	app.get('/appendBookSummary/:id', (req, res) => {
@@ -67,39 +106,14 @@ module.exports = function(app, db) {
 
 
 
-	//Create book summary 
-	app.post('/AndyBookSummaries/create', (req,res) => {
-
-		const note = {  title: req.body.title, content: req.body.content };
-		db.collection('AndyBookSummaries').insert(note, (err, result) => {
-			if(err) {
-				res.send({'error': 'An error has occurred'});
-			} else {
-				res.redirect('/');
-			}
-		});
-	});
-
+	
 
 
 
 	
 
 
-	//Get Note based on id
-	app.get('/AndyBookSummaries/content/:id', (req, res) => {
-		const id = req.params.id;
-
-
-		const details = {'_id': new ObjectID(id) };
-		db.collection('AndyBookSummaries').findOne(details, (err, item) => {
-			if(err) {
-				res.send({ 'error': ' An error has occurred'});
-			} else {
-				res.render('AndyBookSummary', {BookInfo: item, id: id});
-			}
-		});
-	});
+	
 
 	
 
