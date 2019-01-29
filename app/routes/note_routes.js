@@ -15,7 +15,7 @@ module.exports = function(app, db) {
 	
 
 	//Display list of books being read by user (ListOfBooks.ejs)
-	app.get('/Andy/ListOfBooks', (req, res) => {
+	app.get('/Andy/getListOfBooks', (req, res) => {
 	
 		//Get information from mLab database 
 		var collection = db.collection("AndyBookSummaries");
@@ -32,7 +32,7 @@ module.exports = function(app, db) {
 	});
 
 	//Get Book summary information based on id
-	app.get('/BookSummary/content/:id', (req, res) => {
+	app.get('/getBookSummary/content/:id', (req, res) => {
 		//Get id from URL 
 		const id = req.params.id;
 
@@ -53,7 +53,7 @@ module.exports = function(app, db) {
 
 
 	//Display form to create book summary
-	app.get('/Andy/createBookSummaryForm', (req, res) => {
+	app.get('/Andy/getBookForm', (req, res) => {
 		
 
 		var collection = db.collection("AndyBookSummaries");
