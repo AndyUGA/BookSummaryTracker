@@ -4,13 +4,18 @@ var ObjectID = require('mongodb').ObjectID
 module.exports = function(app, db) {
 
 
+	//Display home page
+	app.get('/', (req, res) => {
 
+		//Renders index.ejs in views directory
+		res.render('index');
+	});
 
 
 	
 
 	//Display page to add book summary to database
-	app.get('/getAndyBookSummaries', (req, res) => {
+	app.get('/AndyBookReading', (req, res) => {
 	
 		var collection = db.collection("AndyBookSummaries");
 
@@ -53,7 +58,7 @@ module.exports = function(app, db) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
 
-				res.render('appendBookSummary', {id : id});
+				res.render('appendBookSummary', {BookInfo: result, id : id});
 			}
 		});
 	});
@@ -93,38 +98,7 @@ module.exports = function(app, db) {
 		});
 	});
 
-	//Displays home page
-	app.get('/', (req, res) => {
 	
-		var collection = db.collection("notes");
-		var currentNotes = [];
-		var notesID = [];
-
-
-
-
-		collection.find({}).toArray(function (err, result) {
-
-
-			for(var i = 0; i < result.length; i++)
-			{
-
-
-				notesID.push(ObjectID(result[i]._id));
-			}
-
-			if(err) {
-				res.send({ 'error': ' An error has occurred'});
-			} else {
-
-				res.render('index', {currentNotes: result, notesID: notesID});
-			}
-			console.log('notesID is ' + notesID);
-
-		});
-
-		
-	});
 
 	
 
@@ -149,7 +123,9 @@ module.exports = function(app, db) {
 	//Update existing note based on id
 	app.put('/AndyBookSummaries/content/:id', (req, res) => {
 		const id = req.params.id;
-		const note = {content: res.content + req.body.content,title: req.body.title };
+		console.log('152');
+		console.log(res.content);
+		const note = {content: res.content + " " +  req.body.content,title: res.title };
 		//const note = {content: req.body.content,title: req.body.title };
 
 		const details = {'_id': new ObjectID(id) };
