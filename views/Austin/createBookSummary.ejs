@@ -14,7 +14,7 @@
 <body>
    
  
-<center><h3> Append Book Summary Here </h3>
+<center><h3> Add Book Summary here </h3>
 
 
 
@@ -24,11 +24,13 @@
     <div class="row justify-content-center">
         <div class="col-md-12 ">
             <div class="well well-sm">
-                <form action = "/Andy/appendContent/<%=id%>?_method=PUT" class="form-horizontal " method="post">
+                <form action = "/Austin/createBookSummary" class="form-horizontal " method="post">
                     <fieldset>
                         <div class="form-group">
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
-                           
+                            <div class="col-md-8">
+                                <input id="fname" name="title" type="text" placeholder="Book Title" class="form-control">
+                            </div>
 
 
                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>

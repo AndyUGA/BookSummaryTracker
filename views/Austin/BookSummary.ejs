@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 
 <html lang="en" class="has-lab-nav-bottom lab-theme-light">
 <head>
-   <title>Book Summary Tracker</title>
+   <title><%= BookInfo.title %></title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="/stylesheet.css">
         <meta charset="utf-8">
@@ -14,42 +15,43 @@
 <body>
    
  
-<h3 class = "noteTitle"> Current Summaries </h3>
-
-
-
-
 <div class="table-responsive"> 
 <table class="table">
 	
   <thead class = "thead-dark">
     <tr>
-      <th scope="col">User</th>
+      <th scope="col"><%= BookInfo.title %></th>
 
+       
 
     </tr>
   </thead>
 
 
   <tbody>
+
+    <% for(var i=0; i < lineAmount; i++) { %>
     <tr>
       
-      <td><a href="/Andy/getListOfBooks"> Andy </a></td>
+      <td>
+        <%= oneLineContent[i]%>
+        
+
+      </td>
       
-    </tr>
-    <tr>
-      <td>Nancy</td>
-    </tr>
-    <tr>
-       <td><a href="/Austin/getListOfBooks"> Austin </a></td>
-    </tr>
+      </tr>
+          <% } %>
+   
 
 
   </tbody>
 </table>
 
 </div>
+<center>
+  <a href="/Austin/getAppendForm/<%=id%>"> Append notes here</a>
 
+</center>
 
 
  

@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 
 <html lang="en" class="has-lab-nav-bottom lab-theme-light">
 <head>
-   <title>Book Summary Tracker</title>
+   <title>Current Books</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="/stylesheet.css">
         <meta charset="utf-8">
@@ -14,17 +15,12 @@
 <body>
    
  
-<h3 class = "noteTitle"> Current Summaries </h3>
-
-
-
-
 <div class="table-responsive"> 
 <table class="table">
 	
   <thead class = "thead-dark">
     <tr>
-      <th scope="col">User</th>
+      <th scope="col">Current Books I'm Reading</th>
 
 
     </tr>
@@ -32,17 +28,16 @@
 
 
   <tbody>
+  <% for(var i=0; i < result.length; i++) { %>
     <tr>
-      
-      <td><a href="/Andy/getListOfBooks"> Andy </a></td>
-      
+      <td>
+      	<a href="/Austin/getBookSummary/<%= result[i]._id %>">
+      		<%= result[i].title %>
+      	</a>
+      </td>
     </tr>
-    <tr>
-      <td>Nancy</td>
-    </tr>
-    <tr>
-       <td><a href="/Austin/getListOfBooks"> Austin </a></td>
-    </tr>
+    <% } %>
+   
 
 
   </tbody>
@@ -50,7 +45,9 @@
 
 </div>
 
-
+<div class = "noteTitle"> 
+<a href="/Austin/getBookForm"> Click here to create new book summary </a>
+</div>
 
  
 
