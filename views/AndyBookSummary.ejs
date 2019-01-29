@@ -3,7 +3,7 @@
 
 <html lang="en" class="has-lab-nav-bottom lab-theme-light">
 <head>
-   <title>Current Books</title>
+   <title><%= BookInfo.title %></title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="/stylesheet.css">
         <meta charset="utf-8">
@@ -20,7 +20,7 @@
 	
   <thead class = "thead-dark">
     <tr>
-      <th scope="col">Current Books I'm Reading</th>
+      <th scope="col"><%= BookInfo.title %></th>
 
 
     </tr>
@@ -28,15 +28,16 @@
 
 
   <tbody>
-  <% for(var i=0; i < result.length; i++) { %>
+
     <tr>
+      
       <td>
-      	<a href="/AndyBookSummaries/content/<%= result[i]._id %>">
-      		<%= result[i].title %>
-      	</a>
+      		<%= BookInfo.content %>
+          <br>
       </td>
+      
     </tr>
-    <% } %>
+
    
 
 
@@ -44,10 +45,11 @@
 </table>
 
 </div>
+<center>
+  <a href="/appendBookSummary/<%=id%>"> Append notes here</a>
 
-<div class = "noteTitle"> 
-<a href="/AndyBookSummariesForm"> Click here to add note </a>
-</div>
+</center>
+
 
  
 
