@@ -3,6 +3,9 @@ var ObjectID = require('mongodb').ObjectID
 
 module.exports = function(app, db) {
 
+	var currentContent = "";
+	var currentTitle = "";
+
 
 	//Display home page
 	app.get('/', (req, res) => {
@@ -44,6 +47,26 @@ module.exports = function(app, db) {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
+				currentContent = item.content;
+				currentTitle = item.title;
+
+				var tempLine = "";
+				var oneLineConent = [];
+
+				//currentContent = "abcde\nkdj\nfjkad";
+
+				for(var i = 0; i < currentContent.length;i++)
+				{
+					if(currentContent.substring(i,i+2) != '\n')
+					{
+						tempLine = currentContent.substring(i);
+					}
+					oneLineConent.push(tempLine);
+				}
+
+
+
+
 				//Render BookSummary.ejs from /Views/Andy/BookSummary
 				res.render('Andy/BookSummary', {BookInfo: item, id: id});
 			}
@@ -105,17 +128,31 @@ module.exports = function(app, db) {
 	
 
 	//Update book summary based on id
-	app.put('/AndyBookSummaries/content/:id', (req, res) => {
+	app.put('/appendContent/:id', (req, res) => {
 		const id = req.params.id;
-		const note = {content: res.content + " " +  req.body.content,title: res.title };
-		//const note = {content: req.body.content,title: req.body.title };
+		//const note = {content: res.content + " " +  req.body.content,title: res.title };
 
-		const details = {'_id': new ObjectID(id) };
+
+
+
+
+
+		//Convert id from URL to object ID 
+		const details = {'_id': new ObjectID(id)};
+
+
+		console.log("132");
+		console.log("Current content is " + currentContent);
+		console.log("Current title is " + currentTitle);
+
+		const note = {  title: currentTitle , content: currentContent + req.body.content};
 		db.collection('AndyBookSummaries').update(details, note, (err, item) => {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-				res.render('index', {BookInfo: item, id: id});
+				console.log("Redirecting user")
+				res.redirect('/Andy/getBookSummary/' + id);
+				//res.redirect('/');
 			}
 		});
 	});

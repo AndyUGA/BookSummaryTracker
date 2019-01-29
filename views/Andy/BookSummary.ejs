@@ -29,15 +29,18 @@
 
   <tbody>
 
+    <% for(var i=0; i < BookInfo.content.length; i++) { %>
     <tr>
       
       <td>
-      		<%= BookInfo.content %>
-          <br>
+        <%if (BookInfo.content.substring(i, i+2) != '\n') { %>
+           <%= BookInfo.content.substring(i,i+2) %>
+          <% } %>
+
       </td>
       
-    </tr>
-
+      </tr>
+          <% } %>
    
 
 
