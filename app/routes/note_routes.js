@@ -1,5 +1,7 @@
 
 var ObjectID = require('mongodb').ObjectID
+const MongoClient = require('../../node_modules/mongodb').MongoClient;
+const db = require('../../config/db');
 
 module.exports = function(app, db) {
 
@@ -331,14 +333,29 @@ module.exports = function(app, db) {
 
 
 
+		
+	//Display form to append to book summary
+	app.get('/createCollection', (req, res) => {
+		console.log();
+		console.log();
+		console.log("url is ");
+		console.log(db.url);
+		console.log();
+		MongoClient.connect(db.url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("noteapp");
+  dbo.createCollection("customers", function(err, res) {
+    if (err) throw err;
+    console.log("Collection created!");
+    db.close();
+  });
+});
 
 
 
 
 
-
-	
-
+	});
 
 
 	
