@@ -16,4 +16,4 @@ A simple CRUD API that allows the user to create, read, update, and delete user 
 - JavaScript
 
 ---------------------------------------------------------------------------------------------------------------------------
-Live Preview: https://impartial-honey.glitch.me
+Live Preview: https://jagged-fine.glitch.me
