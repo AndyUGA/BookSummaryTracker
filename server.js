@@ -32,4 +32,3 @@ MongoClient.connect(db.url, function(err, database){
         });
     }
 });
-

@@ -3,6 +3,7 @@ var ObjectID = require('mongodb').ObjectID
 const MongoClient = require('../../node_modules/mongodb').MongoClient;
 const db = require('../../config/db');
 
+
 module.exports = function(app, db) {
 
 	var currentContent = "";
@@ -11,20 +12,22 @@ module.exports = function(app, db) {
 
 	//Display home page
 	app.get('/', (req, res) => {
+		console.log('15');
 
-		//Renders index.ejs in views directory
+		//Renders index.ejs in vikews directory
 		res.render('index');
 	});
 
 
-	
+
 
 	//Display list of books being read by user (ListOfBooks.ejs)
 	app.get('/Andy/getListOfBooks', (req, res) => {
-	
-		//Get information from mLab database 
+
+		//Get information from mLab database
 		var collection = db.collection("AndyBookSummaries");
 
+		/*
 		//Returns all info in mLab database into JSON format
 		collection.find({}).toArray(function (err, result) {
 			if(err) {
@@ -34,14 +37,26 @@ module.exports = function(app, db) {
 				res.render('Andy/ListOfBooks', {result: result});
 			}
 		});
+		*/
+
+		db.listCollections().toArray(function(err, result) {
+    // collInfos is an array of collection info objects that look like:
+    // { name: 'test', options: {} }
+		if(err) {
+			res.send({ 'error': ' An error has occurred'});
+		} else {
+			//Render ListOfBooks.ejs in views directory
+			res.render('Andy/ListOfBooks', {result: result});
+		}
+		});
 	});
 
 	//Get Book summary information based on id
 	app.get('/Andy/getBookSummary/:id', (req, res) => {
-		//Get id from URL 
+		//Get id from URL
 		const id = req.params.id;
 
-		//Convert id from URL to object ID 
+		//Convert id from URL to object ID
 		const details = {'_id': new ObjectID(id)};
 
 		//Find info about book summary based on the object id
@@ -69,7 +84,7 @@ module.exports = function(app, db) {
 						tempLine += currentContent.substring(i, i + 1);
 
 					}
-					else 
+					else
 					{
 						console.log("Pushing");
 						console.log(tempLine);
@@ -78,7 +93,7 @@ module.exports = function(app, db) {
 						tempLine = "";
 						i += 1;
 					}
-					
+
 
 				}
 
@@ -90,11 +105,27 @@ module.exports = function(app, db) {
 		});
 	});
 
+	app.get('/Andy/getBookTitles/:name', (req, res) => {
+		//Get id from URL
+		const name = req.params.name;
+		console.log('111 name is ' + name);
 
+		//Find info about book summary based on the object id
+		db.collection(name).find({}).toArray((err, BookInfo) => {
+			if(err) {
+				res.send({ 'error': ' An error has occurred'});
+			} else {
+
+
+
+				res.render('Andy/test', {BookInfo: BookInfo});
+			}
+		});
+	});
 
 	//Display form to create book summary
 	app.get('/Andy/getBookForm', (req, res) => {
-		
+
 
 		var collection = db.collection("AndyBookSummaries");
 
@@ -110,7 +141,7 @@ module.exports = function(app, db) {
 	});
 
 
-	//Create book summary 
+	//Create book summary
 	app.post('/Andy/createBookSummary', (req,res) => {
 
 		const note = {  title: req.body.title, content: req.body.content + "zz"};
@@ -140,7 +171,7 @@ module.exports = function(app, db) {
 			}
 		});
 	});
-	
+
 
 	//Update book summary based on id
 	app.put('/Andy/appendContent/:id', (req, res) => {
@@ -152,7 +183,7 @@ module.exports = function(app, db) {
 
 
 
-		//Convert id from URL to object ID 
+		//Convert id from URL to object ID
 		const details = {'_id': new ObjectID(id)};
 
 
@@ -179,8 +210,8 @@ module.exports = function(app, db) {
 
 	//Display list of books being read by user (ListOfBooks.ejs)
 	app.get('/Austin/getListOfBooks', (req, res) => {
-	
-		//Get information from mLab database 
+
+		//Get information from mLab database
 		var collection = db.collection("AustinBookSummaries");
 
 		//Returns all info in mLab database into JSON format
@@ -196,10 +227,10 @@ module.exports = function(app, db) {
 
 	//Get Book summary information based on id
 	app.get('/Austin/getBookSummary/:id', (req, res) => {
-		//Get id from URL 
+		//Get id from URL
 		const id = req.params.id;
 
-		//Convert id from URL to object ID 
+		//Convert id from URL to object ID
 		const details = {'_id': new ObjectID(id)};
 
 		//Find info about book summary based on the object id
@@ -227,7 +258,7 @@ module.exports = function(app, db) {
 						tempLine += currentContent.substring(i, i + 1);
 
 					}
-					else 
+					else
 					{
 						console.log("Pushing");
 						console.log(tempLine);
@@ -236,7 +267,7 @@ module.exports = function(app, db) {
 						tempLine = "";
 						i += 1;
 					}
-					
+
 
 				}
 
@@ -252,7 +283,7 @@ module.exports = function(app, db) {
 
 	//Display form to create book summary
 	app.get('/Austin/getBookForm', (req, res) => {
-		
+
 
 		var collection = db.collection("AustinBookSummaries");
 
@@ -268,7 +299,7 @@ module.exports = function(app, db) {
 	});
 
 
-	//Create book summary 
+	//Create book summary
 	app.post('/Austin/createBookSummary', (req,res) => {
 
 		const note = {  title: req.body.title, content: req.body.content + "zz" };
@@ -303,7 +334,7 @@ module.exports = function(app, db) {
 
 
 
-	
+
 
 	//Update book summary based on id
 	app.put('/Austin/appendContent/:id', (req, res) => {
@@ -315,7 +346,7 @@ module.exports = function(app, db) {
 
 
 
-		//Convert id from URL to object ID 
+		//Convert id from URL to object ID
 		const details = {'_id': new ObjectID(id)};
 
 
@@ -333,14 +364,10 @@ module.exports = function(app, db) {
 
 
 
-		
+
 	//Display form to append to book summary
 	app.get('/createCollection', (req, res) => {
-		console.log();
-		console.log();
-		console.log("url is ");
-		console.log(db.url);
-		console.log();
+
 		MongoClient.connect(db.url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("noteapp");
@@ -358,6 +385,6 @@ module.exports = function(app, db) {
 	});
 
 
-	
+
 
 };

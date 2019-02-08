@@ -3,7 +3,7 @@
 
 <html lang="en" class="has-lab-nav-bottom lab-theme-light">
 <head>
-   <title>Current Books</title>
+   <title><%= BookInfo.title %></title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="/stylesheet.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -21,7 +21,8 @@
 
   <thead class = "thead-dark">
     <tr>
-      <th scope="col">Current Books I'm Reading</th>
+      <th scope="col"><%= BookInfo.title %></th>
+
 
 
     </tr>
@@ -29,15 +30,18 @@
 
 
   <tbody>
-  <% for(var i=0; i < result.length; i++) { %>
+
+    <% for(var i=0; i < BookInfo.length; i++) { %>
     <tr>
+
       <td>
-      	<a href="/Andy/getBookTitles/<%= result[i].name %>">
-      		<%= result[i].name %>
-      	</a>
+        <%= BookInfo[i].title%>
+
+
       </td>
-    </tr>
-    <% } %>
+
+      </tr>
+          <% } %>
 
 
 
@@ -46,13 +50,7 @@
 
 </div>
 
-<div class = "noteTitle">
-<a href="/Andy/getBookForm"> <i class="fas fa-pencil-alt" title="Create Book Summary"></i>  </a>
-</div>
 
-<div class = "noteTitle">
-<a href="/createCollection"> Create Collection </a>
-</div>
 
 
 
