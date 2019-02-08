@@ -30,13 +30,16 @@
 
   <tbody>
   <% for(var i=0; i < result.length; i++) { %>
+    <%if (result[i].name != 'system.indexes') { %>
     <tr>
       <td>
       	<a href="/Andy/getBookTitles/<%= result[i].name %>">
-      		<%= result[i].name %>
+            <%= result[i].name %>
       	</a>
       </td>
+
     </tr>
+      <% } %>
     <% } %>
 
 

@@ -27,21 +27,9 @@ module.exports = function(app, db) {
 		//Get information from mLab database
 		var collection = db.collection("AndyBookSummaries");
 
-		/*
-		//Returns all info in mLab database into JSON format
-		collection.find({}).toArray(function (err, result) {
-			if(err) {
-				res.send({ 'error': ' An error has occurred'});
-			} else {
-				//Render ListOfBooks.ejs in views directory
-				res.render('Andy/ListOfBooks', {result: result});
-			}
-		});
-		*/
 
 		db.listCollections().toArray(function(err, result) {
-    // collInfos is an array of collection info objects that look like:
-    // { name: 'test', options: {} }
+  
 		if(err) {
 			res.send({ 'error': ' An error has occurred'});
 		} else {
