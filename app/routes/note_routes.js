@@ -177,30 +177,9 @@ module.exports = function(app, db) {
 			} else {
 
 
-				res.redirect('/');
+				res.redirect('/Andy/getBookTitles/' + name);
 			}
 		});
-	});
-
-
-
-	//Display form to append to book summary
-	app.get('/createCollection', (req, res) => {
-
-		MongoClient.connect("mongodb://andy:test123@ds247688.mlab.com:47688/noteapp", function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("noteapp");
-  dbo.createCollection("customers", function(err, res) {
-    if (err) throw err;
-    console.log("Collection created!");
-    db.close();
-  });
-});
-
-
-
-
-
 	});
 
 
