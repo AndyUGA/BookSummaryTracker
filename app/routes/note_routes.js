@@ -29,7 +29,7 @@ module.exports = function(app, db) {
 
 
 		db.listCollections().toArray(function(err, result) {
-  
+
 		if(err) {
 			res.send({ 'error': ' An error has occurred'});
 		} else {
@@ -106,7 +106,7 @@ module.exports = function(app, db) {
 
 
 
-				res.render('Andy/test', {BookInfo: BookInfo});
+				res.render('Andy/BookSummary2', {BookInfo: BookInfo});
 			}
 		});
 	});
@@ -132,15 +132,19 @@ module.exports = function(app, db) {
 	//Create book summary
 	app.post('/Andy/createBookSummary', (req,res) => {
 
-		const note = {  title: req.body.title, content: req.body.content + "zz"};
-		db.collection('AndyBookSummaries').insert(note, (err, result) => {
-			if(err) {
-				res.send({'error': 'An error has occurred'});
-			} else {
-				res.redirect('/Andy/getListOfBooks');
-			}
+		MongoClient.connect("mongodb://andy:test123@ds247688.mlab.com:47688/noteapp", function(err, db) {
+			if (err) throw err;
+			var dbo = db.db("noteapp");
+			dbo.createCollection(req.body.title, function(err, res) {
+				if (err) throw err;
+				console.log("Collection created!");
+				db.close();
+
+			});
+			res.redirect('/Andy/getListOfBooks');
 		});
-	});
+});
+
 
 
 
@@ -356,7 +360,7 @@ module.exports = function(app, db) {
 	//Display form to append to book summary
 	app.get('/createCollection', (req, res) => {
 
-		MongoClient.connect(db.url, function(err, db) {
+		MongoClient.connect("mongodb://andy:test123@ds247688.mlab.com:47688/noteapp", function(err, db) {
   if (err) throw err;
   var dbo = db.db("noteapp");
   dbo.createCollection("customers", function(err, res) {
