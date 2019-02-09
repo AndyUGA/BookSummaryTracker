@@ -3,7 +3,7 @@
 
 ![Image](https://appdividend.com/wp-content/uploads/2017/06/express-js-tutorials.jpg)
 
-A simple CRUD API that allows the user to create, read, update, and delete user notes
+A web application that allows users to create book entries and add notes with each book entry
 
 ------------------------------------------------------------------------------------------------------------------------------  
 
