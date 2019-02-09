@@ -96,17 +96,14 @@ module.exports = function(app, db) {
 	app.get('/Andy/getBookTitles/:name', (req, res) => {
 		//Get id from URL
 		const name = req.params.name;
-		console.log('111 name is ' + name);
 
+		console.log(req.params);
 		//Find info about book summary based on the object id
 		db.collection(name).find({}).toArray((err, BookInfo) => {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-
-
-
-				res.render('Andy/BookSummary2', {BookInfo: BookInfo});
+				res.render('Andy/BookSummary2', {BookInfo: BookInfo, name: name});
 			}
 		});
 	});
@@ -149,9 +146,9 @@ module.exports = function(app, db) {
 
 
 	//Display form to append to book summary
-	app.get('/Andy/getAppendForm/:id', (req, res) => {
-		const id = req.params.id;
-		var collection = db.collection("AndyBookSummaries");
+	app.get('/Andy/getAppendForm/:name', (req, res) => {
+		const name = req.params.name;
+		var collection = db.collection(name);
 
 
 		collection.find({}).toArray(function (err, result) {
@@ -159,37 +156,67 @@ module.exports = function(app, db) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
 
-				res.render('Andy/appendBookSummary', {BookInfo: result, id : id});
+				res.render('Andy/appendBookSummary', {BookInfo: result, name : name});
 			}
 		});
 	});
 
 
 	//Update book summary based on id
-	app.put('/Andy/appendContent/:id', (req, res) => {
-		const id = req.params.id;
+	app.put('/Andy/appendContent/:name', (req, res) => {
+		const name = req.params.name;
 		//const note = {content: res.content + " " +  req.body.content,title: res.title };
 
 
 
 
-
-
-		//Convert id from URL to object ID
-		const details = {'_id': new ObjectID(id)};
-
-
-		const note = {  title: currentTitle , content: currentContent + req.body.content + "zz"};
-		db.collection('AndyBookSummaries').update(details, note, (err, item) => {
+		const note = {content:req.body.content};
+		db.collection(name).insert(note, (err, item) => {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
 
-				res.redirect('/Andy/getBookSummary/' + id);
-				//res.redirect('/');
+
+				res.redirect('/');
 			}
 		});
 	});
+
+
+
+	//Display form to append to book summary
+	app.get('/createCollection', (req, res) => {
+
+		MongoClient.connect("mongodb://andy:test123@ds247688.mlab.com:47688/noteapp", function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("noteapp");
+  dbo.createCollection("customers", function(err, res) {
+    if (err) throw err;
+    console.log("Collection created!");
+    db.close();
+  });
+});
+
+
+
+
+
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -357,24 +384,7 @@ module.exports = function(app, db) {
 
 
 
-	//Display form to append to book summary
-	app.get('/createCollection', (req, res) => {
 
-		MongoClient.connect("mongodb://andy:test123@ds247688.mlab.com:47688/noteapp", function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("noteapp");
-  dbo.createCollection("customers", function(err, res) {
-    if (err) throw err;
-    console.log("Collection created!");
-    db.close();
-  });
-});
-
-
-
-
-
-	});
 
 
 
