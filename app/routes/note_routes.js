@@ -44,9 +44,10 @@ module.exports = function(app, db) {
 		//Get id from URL
 		const name = req.params.name;
 
-		console.log(req.params);
+
 		//Find info about book summary based on the object id
 		db.collection(name).find({}).toArray((err, BookInfo) => {
+
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
@@ -91,6 +92,25 @@ module.exports = function(app, db) {
 
 
 
+	//Delete Note based on id
+	app.delete('/Andy/:name/:id', (req, res) => {
+		const id = req.params.id;
+		const name = req.params.name;
+
+		const details = {'_id': ObjectID(id) };
+
+		db.collection(name).remove(details, (err, item) => {
+			if(err) {
+
+				res.send({ 'error': ' An error has occurred'});
+			} else {
+				console.log('Note delete!');
+				res.redirect('/Andy/' + name + '/getNotes/');
+			}
+		});
+	});
+
+
 	//Create book summary
 	app.post('/Andy/createBookSummary', (req,res) => {
 
@@ -121,9 +141,7 @@ module.exports = function(app, db) {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-
-
-				res.redirect('/Andy/getBookTitles/' + name);
+				res.redirect('/Andy/' + name + '/getNotes');
 			}
 		});
 	});
