@@ -39,61 +39,8 @@ module.exports = function(app, db) {
 		});
 	});
 
-	//Get Book summary information based on id
-	app.get('/Andy/getBookSummary/:id', (req, res) => {
-		//Get id from URL
-		const id = req.params.id;
 
-		//Convert id from URL to object ID
-		const details = {'_id': new ObjectID(id)};
-
-		//Find info about book summary based on the object id
-		db.collection('AndyBookSummaries').findOne(details, (err, item) => {
-			if(err) {
-				res.send({ 'error': ' An error has occurred'});
-			} else {
-				currentContent = item.content;
-				currentTitle = item.title;
-
-				var tempLine = "";
-				var oneLineContent = [];
-				var lineAmount = 0;
-
-				//currentContent = "abcde\nkdj\nfjkad";
-				console.log("currentContent.length is " + item.content.length);
-				console.log("currentContent is " + item.content);
-
-				for(var i = 0; i < currentContent.length; i++)
-				{
-					//console.log('i is ' + i);
-					console.log("Checking " + currentContent.substring(i,i+2));
-					if(currentContent.substring(i,i+2) != 'zz')
-					{
-						tempLine += currentContent.substring(i, i + 1);
-
-					}
-					else
-					{
-						console.log("Pushing");
-						console.log(tempLine);
-						oneLineContent.push(tempLine);
-						lineAmount++;
-						tempLine = "";
-						i += 1;
-					}
-
-
-				}
-
-
-
-				//Render BookSummary.ejs from /Views/Andy/BookSummary
-				res.render('Andy/BookSummary', {BookInfo: item, oneLineContent: oneLineContent, id: id, lineAmount: lineAmount});
-			}
-		});
-	});
-
-	app.get('/Andy/getBookTitles/:name', (req, res) => {
+	app.get('/Andy/:name/getNotes/', (req, res) => {
 		//Get id from URL
 		const name = req.params.name;
 
@@ -103,7 +50,7 @@ module.exports = function(app, db) {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-				res.render('Andy/BookSummary2', {BookInfo: BookInfo, name: name});
+				res.render('Andy/BookNotes', {BookInfo: BookInfo, name: name});
 			}
 		});
 	});
@@ -125,6 +72,24 @@ module.exports = function(app, db) {
 		});
 	});
 
+	//Display form to append to book summary
+	app.get('/Andy/getAppendForm/:name', (req, res) => {
+		const name = req.params.name;
+		var collection = db.collection(name);
+
+
+		collection.find({}).toArray(function (err, result) {
+			if(err) {
+				res.send({ 'error': ' An error has occurred'});
+			} else {
+
+				res.render('Andy/appendBookSummary', {BookInfo: result, name : name});
+			}
+		});
+	});
+
+
+
 
 	//Create book summary
 	app.post('/Andy/createBookSummary', (req,res) => {
@@ -141,25 +106,6 @@ module.exports = function(app, db) {
 			res.redirect('/Andy/getListOfBooks');
 		});
 });
-
-
-
-
-	//Display form to append to book summary
-	app.get('/Andy/getAppendForm/:name', (req, res) => {
-		const name = req.params.name;
-		var collection = db.collection(name);
-
-
-		collection.find({}).toArray(function (err, result) {
-			if(err) {
-				res.send({ 'error': ' An error has occurred'});
-			} else {
-
-				res.render('Andy/appendBookSummary', {BookInfo: result, name : name});
-			}
-		});
-	});
 
 
 	//Update book summary based on id
