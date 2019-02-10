@@ -24,8 +24,6 @@ module.exports = function(app, db) {
 	//Display list of books being read by user (ListOfBooks.ejs)
 	app.get('/Andy/getListOfBooks', (req, res) => {
 
-		//Get information from mLab database
-		var collection = db.collection("AndyBookSummaries");
 
 
 		db.listCollections().toArray(function(err, result) {
@@ -80,6 +78,8 @@ module.exports = function(app, db) {
 	});
 
 
+
+
 	//Display form to append to book summary
 	app.delete('/Andy/:name/DeleteCollection', (req, res) => {
 			console.log(req.params);
@@ -115,9 +115,9 @@ module.exports = function(app, db) {
 	//Create book summary
 	app.post('/Andy/createBookSummary', (req,res) => {
 
-		MongoClient.connect("mongodb://andy:test123@ds247688.mlab.com:47688/noteapp", function(err, db) {
+		MongoClient.connect("mongodb://andy:test123@ds129085.mlab.com:29085/bookentries", function(err, db) {
 			if (err) throw err;
-			var dbo = db.db("noteapp");
+			var dbo = db.db("bookentries");
 			dbo.createCollection(req.body.title, function(err, res) {
 				if (err) throw err;
 				console.log("Collection created!");
@@ -146,6 +146,12 @@ module.exports = function(app, db) {
 			}
 		});
 	});
+
+
+
+
+
+
 
 
 
