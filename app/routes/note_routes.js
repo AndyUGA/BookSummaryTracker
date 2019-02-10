@@ -59,18 +59,8 @@ module.exports = function(app, db) {
 	//Display form to create book summary
 	app.get('/Andy/getBookForm', (req, res) => {
 
+		res.render('Andy/createBookSummary');
 
-		var collection = db.collection("AndyBookSummaries");
-
-
-		collection.find({}).toArray(function (err, result) {
-			if(err) {
-				res.send({ 'error': ' An error has occurred'});
-			} else {
-
-				res.render('Andy/createBookSummary');
-			}
-		});
 	});
 
 	//Display form to append to book summary
@@ -90,6 +80,17 @@ module.exports = function(app, db) {
 	});
 
 
+	//Display form to append to book summary
+	app.delete('/Andy/:name/DeleteCollection', (req, res) => {
+			console.log(req.params);
+			const name = req.params.name;
+
+			var collection = db.collection(name);
+			collection.drop();
+
+			res.redirect('/Andy/getListOfBooks');
+
+	});
 
 
 	//Delete Note based on id
