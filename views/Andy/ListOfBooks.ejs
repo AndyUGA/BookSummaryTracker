@@ -19,10 +19,10 @@
 <div class="table-responsive">
 <table class="table">
 
-  <thead class = "thead-dark">
+  <thead class = "thead-dark" align="center">
     <tr>
-      <th scope="col">Current Books I'm Reading</th>
-
+      <th scope="col"  >Current Books I'm Reading</th>
+      <th scope="col">Delete Book</th>
 
     </tr>
   </thead>
@@ -36,6 +36,9 @@
       	<a href="/Andy/<%=result[i].name %>/getNotes/">
             <%= result[i].name %>
       	</a>
+
+      </td>
+      <td>
         <form method="POST" action="/Andy/<%= result[i].name %>/DeleteCollection?_method=DELETE">
 
           <input type="hidden" name="_method" value="DELETE"/>
@@ -46,9 +49,8 @@
       </td>
 
 
-
-
     </tr>
+
       <% } %>
     <% } %>
 
@@ -60,7 +62,7 @@
 </div>
 
 <div class = "noteTitle">
-<a href="/Andy/getBookForm"> <i class="fas fa-pencil-alt" title="Create Book Summary"></i>  </a>
+<a href="/Andy/getBookForm"> <i class="fas fa-pencil-alt" title="Create Book Entry"></i>  </a>
 </div>
 
 
