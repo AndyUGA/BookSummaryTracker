@@ -19,8 +19,6 @@ module.exports = function(app, db) {
 	});
 
 
-
-
 	//Display list of books being read by user (ListOfBooks.ejs)
 	app.get('/Andy/getListOfBooks', (req, res) => {
 
@@ -57,7 +55,7 @@ module.exports = function(app, db) {
 	//Display form to create book summary
 	app.get('/Andy/getBookForm', (req, res) => {
 
-		res.render('Andy/createBookSummary');
+		res.render('Andy/createBookEntry');
 
 	});
 
@@ -90,7 +88,7 @@ module.exports = function(app, db) {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-				
+
 				res.render('Andy/createNote', {BookInfo: result, name: name});
 			}
 		});
@@ -99,7 +97,7 @@ module.exports = function(app, db) {
 
 
 
-	//Display form to append to book summary
+	//Delete Book Entry
 	app.delete('/Andy/:name/DeleteCollection', (req, res) => {
 			console.log(req.params);
 			const name = req.params.name;
@@ -132,7 +130,7 @@ module.exports = function(app, db) {
 
 
 	//Create book summary
-	app.post('/Andy/createBookSummary', (req,res) => {
+	app.post('/Andy/createBookEntry', (req,res) => {
 
 		MongoClient.connect("mongodb://andy:test123@ds129085.mlab.com:29085/bookentries", function(err, db) {
 			if (err) throw err;
