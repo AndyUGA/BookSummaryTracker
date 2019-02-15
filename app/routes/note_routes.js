@@ -52,10 +52,10 @@ module.exports = function(app, db) {
 		});
 	});
 
-	//Display form to create book summary
-	app.get('/Andy/getBookForm', (req, res) => {
+	//Display form to create book entry
+	app.get('/BookEntryForm', (req, res) => {
 
-		res.render('Andy/createBookEntry');
+		res.render('forms/createBookEntry');
 
 	});
 
@@ -78,7 +78,7 @@ module.exports = function(app, db) {
 	});
 
 	//Display form to create new note for book entry
-	app.get('/Andy/createNoteForm/:name', (req, res) => {
+	app.get('/createNoteForm/:name', (req, res) => {
 
 		const name = req.params.name;
 		var collection = db.collection('name');
@@ -89,7 +89,7 @@ module.exports = function(app, db) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
 
-				res.render('Andy/createNote', {BookInfo: result, name: name});
+				res.render('forms/createNote', {BookInfo: result, name: name});
 			}
 		});
 	});
