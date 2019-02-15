@@ -37,7 +37,7 @@
       <td>
 
         <%= BookInfo[i].content%>
-        <form method="POST" action="/<%= name %>/<%= BookInfo[i]._id%>?_method=DELETE">
+        <form method="POST" action="/<%= name %>/<%= BookInfo[i]._id %>?_method=DELETE">
 
         	<input type="hidden" name="_method" value="DELETE"/>
         	<button type="submit">

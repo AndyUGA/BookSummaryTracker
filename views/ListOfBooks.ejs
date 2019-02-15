@@ -3,7 +3,7 @@
 
 <html lang="en" class="has-lab-nav-bottom lab-theme-light">
 <head>
-   <title><%= BookInfo.title %></title>
+   <title>Current Books</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="/stylesheet.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -17,39 +17,42 @@
 
 
 <div class="table-responsive">
-<table class="table">
+<table class="table table-bordered table-hover">
 
   <thead class = "thead-dark">
     <tr>
-      <th scope="col"><%= name %></th>
-
-
+      <th scope="col"  >Current Books I'm Reading</th>
+      <th scope="col">Delete Book</th>
 
     </tr>
   </thead>
 
-
+  <% for(var i=0; i < result.length; i++) { %>
+    <%if (result[i].name != 'system.indexes') { %>
   <tbody>
 
-    <% for(var i=0; i < BookInfo.length; i++) { %>
     <tr>
-
       <td>
-
-        <%= BookInfo[i].content%>
-        <form method="POST" action="/<%= name %>/<%= BookInfo[i]._id%>?_method=DELETE">
-
-        	<input type="hidden" name="_method" value="DELETE"/>
-        	<button type="submit">
-        			<i class="far fa-trash-alt"></i>
-        	</button>
-        </form>
-        <a href="/Andy/getAppendForm/<%= BookInfo[i]._id%>/<%=name%>" > Edit </a>
+      	<a href="/<%=result[i].name %>/getNotes/">
+            <%= result[i].name %>
+      	</a>
 
       </td>
+      <td>
+        <form method="POST" action="/Andy/<%= result[i].name %>/DeleteCollection?_method=DELETE">
 
-      </tr>
-          <% } %>
+          <input type="hidden" name="_method" value="DELETE"/>
+          <button type="submit">
+              <i class="far fa-trash-alt"></i>
+          </button>
+        </form>
+      </td>
+
+
+    </tr>
+
+      <% } %>
+    <% } %>
 
 
 
@@ -58,9 +61,11 @@
 
 </div>
 
-<center>
-  <a href="/Andy/createNoteForm/<%=name%>"> <i class="fas fa-plus-circle" title = "Append Notes"></i></a>
-</center>
+<div class = "noteTitle">
+<a href="/Andy/getBookForm"> <i class="fas fa-pencil-alt" title="Create Book Entry"></i>  </a>
+</div>
+
+
 
 
 

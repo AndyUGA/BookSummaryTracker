@@ -15,12 +15,12 @@ module.exports = function(app, db) {
 
 
 		//Renders index.ejs in vikews directory
-		res.redirect('/Andy/getListOfBooks');
+		res.redirect('/getListOfBooks');
 	});
 
 
 	//Display list of books being read by user (ListOfBooks.ejs)
-	app.get('/Andy/getListOfBooks', (req, res) => {
+	app.get('/getListOfBooks', (req, res) => {
 
 
 
@@ -30,13 +30,13 @@ module.exports = function(app, db) {
 			res.send({ 'error': ' An error has occurred'});
 		} else {
 			//Render ListOfBooks.ejs in views directory
-			res.render('Andy/ListOfBooks', {result: result});
+			res.render('ListOfBooks', {result: result});
 		}
 		});
 	});
 
 
-	app.get('/Andy/:name/getNotes/', (req, res) => {
+	app.get('/:name/getNotes/', (req, res) => {
 		//Get id from URL
 		const name = req.params.name;
 
@@ -47,7 +47,7 @@ module.exports = function(app, db) {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-				res.render('Andy/BookNotes', {BookInfo: BookInfo, name: name});
+				res.render('BookNotes', {BookInfo: BookInfo, name: name});
 			}
 		});
 	});
@@ -96,7 +96,6 @@ module.exports = function(app, db) {
 
 
 
-
 	//Delete Book Entry
 	app.delete('/Andy/:name/DeleteCollection', (req, res) => {
 			console.log(req.params);
@@ -105,13 +104,13 @@ module.exports = function(app, db) {
 			var collection = db.collection(name);
 			collection.drop();
 
-			res.redirect('/Andy/getListOfBooks');
+			res.redirect('/getListOfBooks');
 
 	});
 
 
 	//Delete Note based on id
-	app.delete('/Andy/:name/:id', (req, res) => {
+	app.delete('/:name/:id', (req, res) => {
 		const id = req.params.id;
 		const name = req.params.name;
 
@@ -123,7 +122,7 @@ module.exports = function(app, db) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
 				console.log('Note delete!');
-				res.redirect('/Andy/' + name + '/getNotes/');
+				res.redirect('/' + name + '/getNotes/');
 			}
 		});
 	});
@@ -141,7 +140,7 @@ module.exports = function(app, db) {
 				db.close();
 
 			});
-			res.redirect('/Andy/getListOfBooks');
+			res.redirect('/getListOfBooks');
 		});
 });
 
@@ -160,7 +159,7 @@ module.exports = function(app, db) {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-				res.redirect('/Andy/' + name + '/getNotes');
+				res.redirect('/' + name + '/getNotes');
 			}
 		});
 	});
