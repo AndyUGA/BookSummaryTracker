@@ -72,7 +72,7 @@ module.exports = function(app, db) {
 			} else {
 				console.log('75 Result is ');
 				console.log(result);
-				res.render('Andy/updateBookNote', {BookInfo: result, id : id, name: name});
+				res.render('forms/updateBookNote', {result: result, id : id, name: name});
 			}
 		});
 	});
@@ -97,7 +97,7 @@ module.exports = function(app, db) {
 
 
 	//Delete Book Entry
-	app.delete('/Andy/:name/DeleteCollection', (req, res) => {
+	app.delete('/:name/DeleteCollection', (req, res) => {
 			console.log(req.params);
 			const name = req.params.name;
 
@@ -128,8 +128,8 @@ module.exports = function(app, db) {
 	});
 
 
-	//Create book summary
-	app.post('/Andy/createBookEntry', (req,res) => {
+	//Create book entry
+	app.post('/createBookEntry', (req,res) => {
 
 		MongoClient.connect("mongodb://andy:test123@ds129085.mlab.com:29085/bookentries", function(err, db) {
 			if (err) throw err;
@@ -147,13 +147,8 @@ module.exports = function(app, db) {
 
 
 	//Create new note for book entry
-	app.post('/Andy/createNote/:name', (req, res) => {
+	app.post('/createNote/:name', (req, res) => {
 		const name = req.params.name;
-		//const note = {content: res.content + " " +  req.body.content,title: res.title };
-
-
-
-
 		const note = {content:req.body.content};
 		db.collection(name).insert(note, (err, item) => {
 			if(err) {
@@ -167,22 +162,23 @@ module.exports = function(app, db) {
 
 
 	//Update book summary based on id
-	app.put('/Andy/:id/:name/updateNotes/', (req, res) => {
+	app.put('/:id/:name/updateNotes', (req, res) => {
 		const id = req.params.id;
 		const name = req.params.name;
 		//const note = {content: res.content + " " +  req.body.content,title: res.title };
+		console.log('name is ' + name);
 
 		const note = {  content: req.body.content };
 		const details = {'_id': new ObjectID(id) };
 
 
 
-		db.collection('name').update(details, note, (err, item) => {
+		db.collection('name').updateOne(details, note, (err, item) => {
 			if(err) {
-				res.send({ 'error': ' An error has occurred'});
+				res.send({ 'error': err});
 			} else {
-				//res.redirect('/Andy/' + name + '/getNotes');
-				res.redirect('/');
+				//Note has been updated
+				res.redirect('/' + name + '/getNotes');
 			}
 		});
 	});
