@@ -11,32 +11,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
-
-
 <body>
 
 
 <div class="table-responsive">
-<table class="table">
+<table class="table table-bordered table-hover">
 
   <thead class = "thead-dark">
     <tr>
       <th scope="col"><%= name %></th>
-
-
-
+        <th scope="col">Delete Notes</th>
     </tr>
   </thead>
-
-
   <tbody>
-
     <% for(var i=0; i < BookInfo.length; i++) { %>
     <tr>
 
       <td>
 
         <%= BookInfo[i].content%>
+
+
+        <a href="/updateBookNote/<%= BookInfo[i]._id%>/<%=name%>" > Edit </a>
+
+
+      </td>
+      <td>
         <form method="POST" action="/<%= name %>/<%= BookInfo[i]._id %>?_method=DELETE">
 
         	<input type="hidden" name="_method" value="DELETE"/>
@@ -44,14 +44,10 @@
         			<i class="far fa-trash-alt"></i>
         	</button>
         </form>
-        <a href="/Andy/getAppendForm/<%= BookInfo[i]._id%>/<%=name%>" > Edit </a>
-
       </td>
 
       </tr>
           <% } %>
-
-
 
   </tbody>
 </table>

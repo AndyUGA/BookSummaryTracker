@@ -18,7 +18,6 @@ module.exports = function(app, db) {
 		res.redirect('/getListOfBooks');
 	});
 
-
 	//Display list of books being read by user (ListOfBooks.ejs)
 	app.get('/getListOfBooks', (req, res) => {
 
@@ -35,11 +34,10 @@ module.exports = function(app, db) {
 		});
 	});
 
-
+	//Dislay notes for book entry
 	app.get('/:name/getNotes/', (req, res) => {
-		//Get id from URL
-		const name = req.params.name;
 
+		const name = req.params.name;
 
 		//Find info about book summary based on the object id
 		db.collection(name).find({}).toArray((err, BookInfo) => {
@@ -60,7 +58,7 @@ module.exports = function(app, db) {
 	});
 
 	//Display form to append to book summary
-	app.get('/Andy/getAppendForm/:id/:name', (req, res) => {
+	app.get('/updateBookNote/:id/:name', (req, res) => {
 		const id = req.params.id;
 		const name = req.params.name;
 		var collection = db.collection('name');
@@ -108,7 +106,6 @@ module.exports = function(app, db) {
 
 	});
 
-
 	//Delete Note based on id
 	app.delete('/:name/:id', (req, res) => {
 		const id = req.params.id;
@@ -144,8 +141,6 @@ module.exports = function(app, db) {
 		});
 });
 
-
-
 	//Create new note for book entry
 	app.post('/createNote/:name', (req, res) => {
 		const name = req.params.name;
@@ -160,25 +155,20 @@ module.exports = function(app, db) {
 	});
 
 
-
 	//Update book summary based on id
+
 	app.put('/:id/:name/updateNotes', (req, res) => {
 		const id = req.params.id;
 		const name = req.params.name;
-		//const note = {content: res.content + " " +  req.body.content,title: res.title };
-		console.log('name is ' + name);
 
-		const note = {  content: req.body.content };
+		const note = {content: req.body.content};
+
 		const details = {'_id': new ObjectID(id) };
-
-
-
-		db.collection('name').updateOne(details, note, (err, item) => {
+		db.collection('notes').update(details, note, (err, item) => {
 			if(err) {
-				res.send({ 'error': err});
+				res.send({ 'error': ' An error has occurred'});
 			} else {
-				//Note has been updated
-				res.redirect('/' + name + '/getNotes');
+				res.redirect('/');
 			}
 		});
 	});
