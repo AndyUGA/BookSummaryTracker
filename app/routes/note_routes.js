@@ -57,12 +57,12 @@ module.exports = function(app, db) {
 
 	});
 
-	//Display form to append to book summary
+	//Display form to update to book note
 	app.get('/updateBookNote/:id/:name', (req, res) => {
 		const id = req.params.id;
 		const name = req.params.name;
-		var collection = db.collection('name');
-
+		var collection = db.collection(name);
+		var content = "";
 
 		collection.find({}).toArray(function (err, result) {
 			if(err) {
@@ -70,7 +70,17 @@ module.exports = function(app, db) {
 			} else {
 				console.log('75 Result is ');
 				console.log(result);
-				res.render('forms/updateBookNote', {result: result, id : id, name: name});
+
+				//Checks ot see
+				for(var i = 0; i < result.length; i++)
+				{
+					if(result[i]._id == id)
+					{
+						content = result[i].content;
+					}
+				}
+
+				res.render('forms/updateBookNote', {content: content, id : id, name: name});
 			}
 		});
 	});
@@ -79,7 +89,7 @@ module.exports = function(app, db) {
 	app.get('/createNoteForm/:name', (req, res) => {
 
 		const name = req.params.name;
-		var collection = db.collection('name');
+		var collection = db.collection(name);
 
 
 		collection.find({}).toArray(function (err, result) {
@@ -164,11 +174,11 @@ module.exports = function(app, db) {
 		const note = {content: req.body.content};
 
 		const details = {'_id': new ObjectID(id) };
-		db.collection('notes').update(details, note, (err, item) => {
+		db.collection(name).update(details, note, (err, item) => {
 			if(err) {
 				res.send({ 'error': ' An error has occurred'});
 			} else {
-				res.redirect('/');
+					res.redirect('/' + name + '/getNotes');
 			}
 		});
 	});
