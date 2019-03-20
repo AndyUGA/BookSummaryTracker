@@ -34,7 +34,7 @@
 
 
 <div class="table-responsive">
-<table class="table table-bordered table-hover">
+<table class="table table-bordered">
 
   <thead class = "thead-dark">
     <tr>
@@ -46,12 +46,11 @@
     <% for(var i=0; i < BookInfo.length; i++) { %>
     <tr>
 
-      <td>
-
-        <%= BookInfo[i].content%>
+      <td >
+         <%= BookInfo[i].content%>
 
         <br>
-        <a href="/updateBookNote/<%= BookInfo[i]._id%>/<%=name%>" > <i class="far fa-edit"></i></a>
+
 
 
       </td>
@@ -62,6 +61,8 @@
         	<button type="submit">
         			<i class="far fa-trash-alt"></i>
         	</button>
+
+          <a href="/updateBookNote/<%= BookInfo[i]._id%>/<%=name%>" > <i class="far fa-edit table"></i></a>
         </form>
       </td>
 

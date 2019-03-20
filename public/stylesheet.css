@@ -2,7 +2,9 @@
   font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
-
+.bookNotes {
+  text-align: left;
+}
 
 .table  {
    text-align: center;
