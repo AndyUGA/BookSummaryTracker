@@ -31,6 +31,7 @@ module.exports = function(app, db) {
     //Find info about book summary based on the object id
     db.collection(name)
       .find({})
+      .sort({ _id: 1 })
       .toArray((err, BookInfo) => {
         if (err) {
           res.send({ error: " An error has occurred" });
@@ -142,7 +143,8 @@ module.exports = function(app, db) {
       if (err) {
         res.send({ error: " An error has occurred" });
       } else {
-        res.redirect("/" + name + "/getNotes");
+        //res.redirect("/" + name + "/getNotes");
+        res.redirect("/createNoteForm/" + name);
       }
     });
   });
