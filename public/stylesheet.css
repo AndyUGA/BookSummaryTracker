@@ -1,17 +1,16 @@
 * {
-  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-family: "Helvetica", "Arial", sans-serif;
 }
 
 .bookNotes {
   text-align: left;
 }
 
-.table  {
-   text-align: center;
+.table {
+  text-align: center;
 }
 
-
 .noteTitle {
-	text-align: center;
-	padding-bottom: 20px;
+  text-align: center;
+  padding-bottom: 20px;
 }

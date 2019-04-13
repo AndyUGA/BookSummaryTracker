@@ -56,12 +56,12 @@
       </td>
       <td>
         <form method="POST" action="/<%= name %>/<%= BookInfo[i]._id %>?_method=DELETE">
-
+          <!--
         	<input type="hidden" name="_method" value="DELETE"/>
         	<button type="submit">
         			<i class="far fa-trash-alt"></i>
         	</button>
-
+        -->
           <a href="/updateBookNote/<%= BookInfo[i]._id%>/<%=name%>" > <i class="far fa-edit table"></i></a>
         </form>
       </td>
