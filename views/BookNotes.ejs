@@ -33,44 +33,39 @@
   </nav>
 
 
+
+
 <div class="table-responsive">
-<table class="table table-bordered">
 
-  <thead class = "thead-dark">
-    <tr>
-      <th scope="col"><%= name %></th>
-        <th scope="col">Edit Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% for(var i=0; i < BookInfo.length; i++) { %>
-    <tr>
+  <br>
+  <% for(var i=0; i < BookInfo.length; i++) { %>
+            <div class=" col-md-6 card  p-3 bg-dark rounded justify-content-center align-items-center " style="width: 80%;">
+                <div class="card-body">
+                    <div class = "text-right"> <%= i + 1 %> </div>
+                    <br>
+                    <h5 class="card-title text-center">   <%= BookInfo[i].content%> </h5>
+                    <div class = "text-center">
+                    <a class = "darkMode" href="/updateBookNote/<%= BookInfo[i]._id%>/<%=name%>" > Edit </a>
+                  </div>
+                </div>
+                </div>
 
-      <td >
-         <%= BookInfo[i].content%>
-
-        <br>
-
-
-
-      </td>
-      <td>
-        <form method="POST" action="/<%= name %>/<%= BookInfo[i]._id %>?_method=DELETE">
-          <!--
-        	<input type="hidden" name="_method" value="DELETE"/>
-        	<button type="submit">
-        			<i class="far fa-trash-alt"></i>
-        	</button>
-        -->
-          <a class = "darkMode" href="/updateBookNote/<%= BookInfo[i]._id%>/<%=name%>" > Edit </a>
-        </form>
-      </td>
-
-      </tr>
           <% } %>
 
-  </tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
 

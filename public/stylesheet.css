@@ -9,6 +9,10 @@
   color: white;
 }
 
+.card.bg-dark {
+  background-color: #bg-dark !important;
+}
+
 .bookNotes {
   text-align: left;
 }
@@ -20,4 +24,10 @@
 .noteTitle {
   text-align: center;
   padding-bottom: 20px;
+}
+
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
 }
