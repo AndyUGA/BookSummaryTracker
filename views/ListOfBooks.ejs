@@ -23,6 +23,11 @@
             </ul>
          </div>
       </nav>
+
+
+      <button> Click Me! </button>
+
+
       <div class="table-responsive">
 
          <table class="table table-bordered table-hover">
@@ -64,3 +69,16 @@
          <a href="/BookEntryForm"> <i class="fas fa-pencil-alt" title="Create Book Entry"></i>  </a>
       </div>
 </html>
+
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+
+      $("*").css("background-color", "white");
+      $("*").css("color", "white");
+      $(".darkMode").css("background-color", "white");
+      $(".darkMode").css("color", "black");
+
+  });
+});
+</script>

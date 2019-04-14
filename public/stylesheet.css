@@ -4,6 +4,10 @@
   background-color: #262626;
 }
 
+#foo {
+  background-color: red;
+}
+
 .darkMode {
   background-color: #262626;
   color: white;
