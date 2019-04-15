@@ -30,7 +30,7 @@
 
       <div class="table-responsive">
 
-         <table class="table table-bordered table-hover">
+         <table class="table  table-hover">
             <thead class = "thead-dark">
                <tr>
                   <th scope="col">Current Books I'm Reading</th>
@@ -39,10 +39,12 @@
                      -->
                </tr>
             </thead>
-            <% for(var i=0; i < result.length; i++) { %>
-            <%if (result[i].name != 'system.indexes') { %>
+
             <tbody>
+
                <tr>
+                 <% for(var i=0; i < result.length; i++) { %>
+                 <%if (result[i].name != 'system.indexes') { %>
                   <td>
                      <a  class = "darkMode" href="/<%=result[i].name %>/getNotes/">
                      <%= result[i].name %>
