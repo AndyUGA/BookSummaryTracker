@@ -1,7 +1,9 @@
 
 # Book Summary Tracker
 
-![Image](https://appdividend.com/wp-content/uploads/2017/06/express-js-tutorials.jpg)
+Homepage             |  Notes
+:-------------------------:|:-------------------------:
+![](https://github.com/AndyUGA/BookSummaryTracker/blob/master/Screenshots/BookNotes.png)  |  ![](https://github.com/AndyUGA/BookSummaryTracker/blob/master/Screenshots/BookSummaryHomePage.png)
 
 A web application that allows users to create book entries and add notes with each book entry
 
