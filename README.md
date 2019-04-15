@@ -3,7 +3,9 @@
 
 Homepage             |  Notes
 :-------------------------:|:-------------------------:
-![](https://github.com/AndyUGA/BookSummaryTracker/blob/master/Screenshots/BookNotes.png)  |  ![](https://github.com/AndyUGA/BookSummaryTracker/blob/master/Screenshots/BookSummaryHomePage.png)
+![](https://github.com/AndyUGA/BookSummaryTracker/blob/master/Screenshots/Homepage.png)  |  ![](https://github.com/AndyUGA/BookSummaryTracker/blob/master/Screenshots/Notes.png)
+
+
 
 A web application that allows users to create book entries and add notes with each book entry
 
@@ -18,4 +20,4 @@ A web application that allows users to create book entries and add notes with ea
 - JavaScript
 
 ---------------------------------------------------------------------------------------------------------------------------
-Live Preview: https://jagged-fine.glitch.me
+[Live Preview](https://jagged-fine.glitch.me)
