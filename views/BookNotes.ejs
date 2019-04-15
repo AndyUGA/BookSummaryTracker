@@ -27,21 +27,24 @@
     </div>
   </nav>
 
-  
+
 <div class="table-responsive">
 
   <br>
   <% for(var i=0; i < BookInfo.length; i++) { %>
             <div class=" col-md-6 card  p-3 bg-dark rounded justify-content-center align-items-center " style="width: 80%;">
 
-                    <div class = "text-right darkMode"> <%= i + 1 %> </div>
+
+                    <div class = "text-right darkMode cardText"> <%= i + 1 %> </div>
                     <br>
-                    <h5 class=" darkMode text-center">   <%= BookInfo[i].content%> </h5>
-                    <div class = "text-center">
+                    <h5 class=" darkMode text-center cardText">   <%= BookInfo[i].content%> </h5>
+                    <div class = "text-center cardText">
                     <a class = "darkMode" href="/updateBookNote/<%= BookInfo[i]._id%>/<%=name%>" > Edit </a>
                   </div>
 
-                </div>
+
+
+              </div>
 
           <% } %>
 
