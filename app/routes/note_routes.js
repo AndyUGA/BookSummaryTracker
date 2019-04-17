@@ -25,12 +25,15 @@ module.exports = function(app, db) {
   });
 
   //Dislay notes for book entry
-  app.get("/:name/getNotes/", (req, res) => {
+  app.get("/:name/:pageNumber/getNotes/", (req, res) => {
     const name = req.params.name;
+    const pageNumber = req.params.pageNumber;
 
     //Find info about book summary based on the object id
     db.collection(name)
       .find({})
+      //.limit(5)
+      //.skip(pageNumber * 5)
       .sort({ _id: -1 })
       .toArray((err, BookInfo) => {
         if (err) {
