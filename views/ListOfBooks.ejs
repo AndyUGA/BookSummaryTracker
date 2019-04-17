@@ -11,56 +11,33 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
    </head>
-   <body>
+   <body class = "darkMode">
   <% include ReusableComponents/navbar.ejs %>
 
       <!--
       <button> Click Me! </button>
     -->
 
+    <br>
+    <h2 class = "text-center"> Books We're Reading </h2>
+    <% for(var i=0; i < result.length; i++) { %>
+    <%if (result[i].name != 'system.indexes') { %>
+      <div class=" col-md-6 card text-center p-3 bg-dark rounded justify-content-center align-items-center " style="width: 80%;">
+        <a  class = "darkMode cardText" href="/<%=result[i].name %>/getNotes/">
+        <%= result[i].name %>
+        </a>
+        </div>
+  <% } %>
+  <% } %>
 
-      <div class="table-responsive">
 
-         <table class="table  table-hover">
-            <thead class = "thead-dark">
-               <tr>
-                  <th scope="col">Current Books I'm Reading</th>
-                  <!--
-                     <th scope="col">Delete Book</th>
-                     -->
-               </tr>
-            </thead>
 
-            <tbody>
-
-               <tr>
-                 <% for(var i=0; i < result.length; i++) { %>
-                 <%if (result[i].name != 'system.indexes') { %>
-                  <td>
-                     <a  class = "darkMode" href="/<%=result[i].name %>/getNotes/">
-                     <%= result[i].name %>
-                     </a>
-                  </td>
-                  <!--
-                     <td>
-                       <form method="POST" action="/<%= result[i].name %>/DeleteCollection?_method=DELETE">
-
-                         <input type="hidden" name="_method" value="DELETE"/>
-                         <button type="submit">
-                             <i class="far fa-trash-alt"></i>
-                         </button>
-                       </form>
-                     </td>
-                     -->
-               </tr>
-               <% } %>
-               <% } %>
-            </tbody>
-         </table>
-      </div>
-      <div class = "noteTitle">
+      <div class = "text-center ">
          <a href="/BookEntryForm"> <i class="fas fa-pencil-alt" title="Create Book Entry"></i>  </a>
       </div>
+
+
+
 </html>
 
 <script>

@@ -4,10 +4,6 @@
   background-color: #262626;
 }
 
-#foo {
-  background-color: red;
-}
-
 .darkMode {
   background-color: #262626;
   color: white;
@@ -15,6 +11,15 @@
 
 .card.bg-dark {
   background-color: #202020 !important;
+}
+
+.cardText {
+  background-color: #1f1f1f;
+}
+
+.cardSize {
+  height: 50%;
+  width: 50%;
 }
 
 .bookNotes {
@@ -34,8 +39,4 @@
   margin: 0 auto; /* Added */
   float: none; /* Added */
   margin-bottom: 10px; /* Added */
-}
-
-.cardText {
-  background-color: #1f1f1f;
 }
