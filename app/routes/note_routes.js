@@ -31,7 +31,7 @@ module.exports = function(app, db) {
     //Find info about book summary based on the object id
     db.collection(name)
       .find({})
-      .sort({ _id: 1 })
+      .sort({ _id: -1 })
       .toArray((err, BookInfo) => {
         if (err) {
           res.send({ error: " An error has occurred" });
