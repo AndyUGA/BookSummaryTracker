@@ -24,7 +24,7 @@
 
 
   <div class = "text-center">
-    <a href="/createNoteForm/<%=name%>"> <i class="fas fa-plus-circle fa-2x"></i></a>
+    <a title = "Create note" href="/createNoteForm/<%=name%>"> <i class="fas fa-plus-circle fa-2x"></i></a>
   </div>
   <br>
   <% for(var i=0; i < BookInfo.length; i++) { %>
@@ -35,7 +35,7 @@
                     <br>
                     <h5 class=" darkMode text-center cardText">   <%= BookInfo[i].content%> </h5>
                     <div class = "text-center cardText">
-                    <a class = "darkMode" href="/updateBookNote/<%= BookInfo[i]._id%>/<%=name%>" > Edit </a>
+                    <a title = "Edit note" class = "darkMode" href="/updateBookNote/<%= BookInfo[i]._id%>/<%=name%>" > <i class="fas fa-edit"></i> </a>
                   </div>
               </div>
 

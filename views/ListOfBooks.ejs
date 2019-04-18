@@ -19,21 +19,20 @@
     -->
 
     <br><br><br>
-    <h2 class = "text-center"> Books We're Reading </h2>
+    <h2 class = "text-center"> Current Books </h2>
+    <br>
     <% for(var i=0; i < result.length; i++) { %>
     <%if (result[i].name != 'system.indexes') { %>
       <div class=" col-md-6 card text-center p-3 bg-dark rounded justify-content-center align-items-center " style="width: 80%;">
-        <a  class = "darkMode cardText" href="/<%=result[i].name %>/0/getNotes/">
+        <a  class = "darkMode cardText" href="/<%=result[i].name %>/getNotes/">
         <%= result[i].name %>
         </a>
         </div>
   <% } %>
   <% } %>
-
-
-
+<br>
       <div class = "text-center ">
-         <a href="/BookEntryForm"> <i class="fas fa-pencil-alt" title="Create Book Entry"></i>  </a>
+         <a title = "Create Book Entry" href="/BookEntryForm"> <i class="fas fa-pencil-alt fa-2x" title="Create Book Entry"></i>  </a>
       </div>
 
 
