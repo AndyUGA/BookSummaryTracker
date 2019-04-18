@@ -25,7 +25,7 @@ module.exports = function(app, db) {
   });
 
   //Dislay notes for book entry
-  app.get("/:name/:pageNumber/getNotes/", (req, res) => {
+  app.get("/:name/getNotes/", (req, res) => {
     const name = req.params.name;
     const pageNumber = req.params.pageNumber;
 
