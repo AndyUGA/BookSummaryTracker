@@ -17,13 +17,15 @@
 <body class = "darkMode">
 <% include ReusableComponents/navbar.ejs %>
 
-<br>
-<div class = "text-center">
-<a  class = "darkMode cardText" href="/<%=name%>/1/getNotes/"> Next <i class="fas fa-forward"></i> </a>
-</div>
+<br>  <br><br>
 
 <div class="table-responsive">
 
+
+
+  <div class = "text-center">
+    <a href="/createNoteForm/<%=name%>"> <i class="fas fa-plus-circle fa-2x"></i></a>
+  </div>
   <br>
   <% for(var i=0; i < BookInfo.length; i++) { %>
             <div class=" col-md-6 card  p-3 bg-dark rounded justify-content-center align-items-center " style="width: 80%;">
@@ -35,34 +37,13 @@
                     <div class = "text-center cardText">
                     <a class = "darkMode" href="/updateBookNote/<%= BookInfo[i]._id%>/<%=name%>" > Edit </a>
                   </div>
-
-
-
               </div>
 
           <% } %>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 
-<center>
 
-  <a href="/createNoteForm/<%=name%>"> <i class="fas fa-plus-circle" title = "Append Notes"></i></a>
-</center>
 
 
 
