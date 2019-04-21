@@ -9,7 +9,7 @@ module.exports = function(app, db) {
   //Display home page
   app.get("/", (req, res) => {
     //Renders index.ejs in vikews directory
-    res.redirect("/getListOfBooks");
+    res.render("Homepage");
   });
 
   //Display list of books being read by user (ListOfBooks.ejs)

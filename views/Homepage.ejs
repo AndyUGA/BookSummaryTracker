@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="has-lab-nav-bottom lab-theme-light">
    <head>
-      <title>Current Books</title>
+      <title>Home</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <link rel="stylesheet" type="text/css" href="/stylesheet.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -12,30 +12,30 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
    </head>
    <body class = "darkMode">
-  <% include ReusableComponents/navbar.ejs %>
-
-      <!--
-      <button> Click Me! </button>
-    -->
-
-    <br><br><br>
-    <h2 class = "text-center"> Current Books </h2>
-    <br>
-    <% for(var i=0; i < result.length; i++) { %>
-    <%if (result[i].name != 'system.indexes') { %>
-      <div class=" col-md-6 card text-center p-3 bg-light rounded justify-content-center align-items-center " style="width: 80%;">
-        <a  class = "darkMode cardText" href="/<%=result[i].name %>/getNotes/">
-        <%= result[i].name %>
-        </a>
-        </div>
-  <% } %>
-  <% } %>
-<br>
-      <div class = "text-center ">
-         <a title = "Create Book Entry" href="/BookEntryForm"> <i class="fas fa-pencil-alt fa-2x" title="Create Book Entry"></i>  </a>
-      </div>
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       <a class="navbar-brand" href="/getListOfBooks">Current Books</a>
 
 
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav mr-auto">
+         </ul>
+       </div>
+     </nav>
+
+
+
+     <br><br>
+    <div class = "testbg">
+
+      <div class = "text-center " id="outer" class="container">
+    <div id="inner">
+      <h2 class = "title"> BE INSPIRED TO READ </h2>
+      <p class = "subtitle"> This website allows you to easily take notes <br> of  books that you're reading</p>
+
+    </div>
+  </div>
+
+</body>
 
 </html>
 

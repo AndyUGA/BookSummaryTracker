@@ -1,9 +1,47 @@
 * {
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: "Helvetica-light", "Arial", sans-serif;
 
-  background-color: #262626;
+  /*background-color: #262626;
+  */
 }
 
+body,
+html {
+  height: 100%;
+  margin: 0;
+  position: relative;
+}
+
+.testbg {
+  background-image: url("Images/mountain.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.title {
+  color: white;
+  font-weight: bold !important;
+  font-size: 35;
+}
+
+.subtitle {
+  color: white;
+  font-size: 25;
+}
+
+#outer {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+}
+
+#inner {
+  margin: auto;
+}
+
+/*
 .darkMode {
   background-color: #262626;
   color: white;
@@ -16,6 +54,7 @@
 .cardText {
   background-color: #1f1f1f;
 }
+*/
 
 .cardSize {
   height: 50%;
