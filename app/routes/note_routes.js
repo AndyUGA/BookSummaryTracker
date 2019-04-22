@@ -43,6 +43,25 @@ module.exports = function(app, db) {
         }
       });
   });
+  //Dislay notes for book entry
+  app.get("/:name/getNotes/read", (req, res) => {
+    const name = req.params.name;
+    const pageNumber = req.params.pageNumber;
+
+    //Find info about book summary based on the object id
+    db.collection(name)
+      .find({})
+      //.limit(5)
+      //.skip(pageNumber * 5)
+      .sort({ _id: 1 })
+      .toArray((err, BookInfo) => {
+        if (err) {
+          res.send({ error: " An error has occurred" });
+        } else {
+          res.render("BookNotes", { BookInfo: BookInfo, name: name });
+        }
+      });
+  });
 
   //Display form to create book entry
   app.get("/BookEntryForm", (req, res) => {

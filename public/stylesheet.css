@@ -1,7 +1,8 @@
 * {
   font-family: "Helvetica-light", "Arial", sans-serif;
 
-  /*background-color: #262626;
+  /*
+  background-color: #262626;
   */
 }
 
@@ -13,7 +14,7 @@ html {
 }
 
 .testbg {
-  background-image: url("Images/mountain.jpg");
+  background-image: url("Images/mountain3.jpg");
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -21,13 +22,13 @@ html {
 }
 
 .title {
-  color: white;
+  color: #695e88;
   font-weight: bold !important;
   font-size: 35;
 }
 
 .subtitle {
-  color: white;
+  color: #695e88;
   font-size: 25;
 }
 
@@ -54,6 +55,7 @@ html {
 .cardText {
   background-color: #1f1f1f;
 }
+
 */
 
 .cardSize {
