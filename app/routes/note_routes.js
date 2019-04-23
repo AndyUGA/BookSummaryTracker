@@ -36,6 +36,7 @@ module.exports = function(app, db) {
       //.skip(pageNumber * 5)
       .sort({ _id: -1 })
       .toArray((err, BookInfo) => {
+        console.log(BookInfo);
         if (err) {
           res.send({ error: " An error has occurred" });
         } else {
@@ -171,8 +172,27 @@ module.exports = function(app, db) {
     });
   });
 
-  //Update book summary based on id
+  //Find notes based on user inputted query
+  app.post("/:name/getNotes", (req, res) => {
+    const name = req.params.name;
+    const noteQuery = req.body.noteQuery;
+    console.log("noteQuery is " + noteQuery);
+    let query = { content: { $regex: noteQuery, $options: "$i" } };
+    //Find info about book summary based on the object id
+    db.collection(name)
+      .find(query)
+      .sort({ _id: -1 })
+      .toArray((err, BookInfo) => {
+        console.log(BookInfo);
+        if (err) {
+          res.send({ error: " An error has occurred" });
+        } else {
+          res.render("BookNotes", { BookInfo: BookInfo, name: name });
+        }
+      });
+  });
 
+  //Update book summary based on id
   app.put("/:id/:name/updateNotes", (req, res) => {
     const id = req.params.id;
     const name = req.params.name;

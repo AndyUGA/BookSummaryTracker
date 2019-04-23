@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
-<body class = "darkMode">
+<body  class = "darkMode">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/getListOfBooks">Current Books</a>
 
@@ -28,10 +28,14 @@
 <br>  <br><br>
 
 
-<div class="table-responsive">
 
+<div class="table-responsive text-center">
+  <form action="/<%=name%>/getNotes" method = "POST">
+     <input class = "input-large" type="text" placeholder=" Search Notes" name="noteQuery">
+     <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
 
-
+  <br>
   <div class = "text-center">
     <a title = "Create note" href="/createNoteForm/<%=name%>"> <i class="fas fa-plus-circle fa-2x"></i></a>
     <br>
