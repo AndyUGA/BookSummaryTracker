@@ -36,7 +36,6 @@ module.exports = function(app, db) {
       //.skip(pageNumber * 5)
       .sort({ _id: -1 })
       .toArray((err, BookInfo) => {
-        console.log(BookInfo);
         if (err) {
           res.send({ error: " An error has occurred" });
         } else {
@@ -176,7 +175,7 @@ module.exports = function(app, db) {
   app.post("/:name/getNotes", (req, res) => {
     const name = req.params.name;
     const noteQuery = req.body.noteQuery;
-    console.log("noteQuery is " + noteQuery);
+
     let query = { content: { $regex: noteQuery, $options: "$i" } };
     //Find info about book summary based on the object id
     db.collection(name)

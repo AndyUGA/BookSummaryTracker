@@ -6,6 +6,10 @@
   background-color: none;
 }
 
+input {
+  width: 95vh;
+}
+
 body,
 html {
   height: 100%;
@@ -97,4 +101,10 @@ html {
   top: 0; /* Position the navbar at the top of the page */
   width: 100%;
   z-index: 1; /*Add this*/
+}
+
+@media screen and (max-width: 830px) {
+  input {
+    width: 40vh;
+  }
 }
