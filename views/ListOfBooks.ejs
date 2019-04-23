@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="has-lab-nav-bottom lab-theme-light">
+<html lang="en" class="has-lab-nav-bottom lab-theme-light ">
    <head>
       <title>Current Books</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -19,11 +19,13 @@
     -->
 
     <br><br><br>
+
+
     <h2 class = "text-center"> Current Books </h2>
     <br>
     <% for(var i=0; i < result.length; i++) { %>
     <%if (result[i].name != 'system.indexes') { %>
-      <div class=" col-md-6 card text-center p-3 bg-light rounded justify-content-center align-items-center " style="width: 80%;">
+      <div class=" col-md-6 card text-center p-3 bg-dark rounded justify-content-center align-items-center " style="width: 80%;">
         <a  class = "darkMode cardText" href="/<%=result[i].name %>/getNotes/">
         <%= result[i].name %>
         </a>
