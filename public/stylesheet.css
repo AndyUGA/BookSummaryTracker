@@ -50,6 +50,7 @@ html {
   margin: auto;
 }
 
+/*
 .darkMode {
   background-color: #262626;
   color: white;
@@ -62,6 +63,8 @@ html {
 .cardText {
   background-color: #1f1f1f;
 }
+
+*/
 
 .cardSize {
   height: 50%;
