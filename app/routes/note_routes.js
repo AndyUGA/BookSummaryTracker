@@ -160,7 +160,7 @@ module.exports = function(app, db) {
   //Create new note for book entry
   app.post("/createNote/:name", (req, res) => {
     const name = req.params.name;
-    const note = { content: req.body.content };
+    const note = { content: req.body.content, created: new Date().toLocaleString("en-US", { timeZone: "America/New_York" }) };
     db.collection(name).insert(note, (err, item) => {
       if (err) {
         res.send({ error: " An error has occurred" });
@@ -177,7 +177,7 @@ module.exports = function(app, db) {
     const id = req.params.id;
     const name = req.params.name;
 
-    const note = { content: req.body.content };
+    const note = { content: req.body.content, created: new Date().toLocaleString("en-US", { timeZone: "America/New_York" }) };
 
     const details = { _id: new ObjectID(id) };
     db.collection(name).update(details, note, (err, item) => {

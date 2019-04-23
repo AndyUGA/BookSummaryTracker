@@ -47,6 +47,9 @@
                     <div class = "text-center cardText">
                     <a title = "Edit note" class = "darkMode" href="/updateBookNote/<%= BookInfo[i]._id%>/<%=name%>" > <i class="fas fa-edit"></i> </a>
                   </div>
+                  <div class="card-footer text-muted">
+                    <%= BookInfo[i].created%>
+                  </div>
               </div>
 
           <% } %>
