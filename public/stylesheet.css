@@ -8,6 +8,7 @@
 
 input {
   width: 95vh;
+  border-width: 1px 1px 1px 1px;
 }
 
 body,
