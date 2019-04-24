@@ -6,6 +6,12 @@
   background-color: none;
 }
 
+button {
+  border-color: #f8f9fa;
+
+  background-color: #f8f9fa;
+}
+
 input {
   width: 95vh;
   border-width: 1px 1px 1px 1px;
@@ -16,6 +22,14 @@ html {
   height: 100%;
   margin: 0;
   position: relative;
+}
+
+.timestamp {
+  color: gray;
+  margin-top: 5px;
+  font-size: 13px;
+  opacity: 0.7;
+  align: right;
 }
 
 .testbg {

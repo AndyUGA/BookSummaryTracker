@@ -13,20 +13,28 @@ module.exports = function(app, db) {
   });
 
   //Display list of books being read by user (ListOfBooks.ejs)
-  app.get("/getListOfBooks", (req, res) => {
-    db.listCollections().toArray(function(err, result) {
-      if (err) {
-        res.send({ error: " An error has occurred" });
-      } else {
-        //Render ListOfBooks.ejs in views directory
-        res.render("ListOfBooks", { result: result });
-      }
-    });
+  app.get("/:fileName", (req, res) => {
+    const fileName = req.params.fileName;
+    console.log("fileName is " + fileName);
+    //Display list of books being read by user (ListOfBooks.ejs)
+    if (fileName == "getListOfBooks") {
+      db.listCollections().toArray(function(err, result) {
+        if (err) {
+          res.send({ error: " An error has occurred" });
+        } else {
+          //Render ListOfBooks.ejs in views directory
+          res.render("ListOfBooks", { result: result });
+        }
+      });
+    } else if (fileName == "BookEntryForm") {
+      //Display form to create book entry
+      res.render("forms/createBookEntry");
+    }
   });
 
   //Dislay notes for book entry
-  app.get("/:name/getNotes/", (req, res) => {
-    const name = req.params.name;
+  app.post("/getNotes", (req, res) => {
+    const name = req.body.bookName;
     const pageNumber = req.params.pageNumber;
 
     //Find info about book summary based on the object id
@@ -61,11 +69,6 @@ module.exports = function(app, db) {
           res.render("BookNotes", { BookInfo: BookInfo, name: name });
         }
       });
-  });
-
-  //Display form to create book entry
-  app.get("/BookEntryForm", (req, res) => {
-    res.render("forms/createBookEntry");
   });
 
   //Display form to update to book note

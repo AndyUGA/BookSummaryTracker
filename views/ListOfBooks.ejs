@@ -12,44 +12,33 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
    </head>
    <body class = "darkMode">
-  <% include ReusableComponents/navbar.ejs %>
-
+      <% include ReusableComponents/navbar.ejs %>
       <!--
-      <button> Click Me! </button>
-    -->
-
-    <br><br><br>
-
-
-    <h2 class = "text-center"> Current Books </h2>
-    <br>
-    <% for(var i=0; i < result.length; i++) { %>
-    <%if (result[i].name != 'system.indexes') { %>
-      <div class=" col-md-6 card text-center p-3 bg-light rounded justify-content-center align-items-center " style="width: 80%;">
-        <a  class = "darkMode cardText" href="/<%=result[i].name %>/getNotes/">
-        <%= result[i].name %>
-        </a>
-        </div>
-  <% } %>
-  <% } %>
-<br>
+         <button> Click Me! </button>
+         -->
+      <br><br><br>
+      <h2 class = "text-center"> Current Books </h2>
+      <br>
+      <% for(var i=0; i < result.length; i++) { %>
+      <%if (result[i].name != 'system.indexes') { %>
+      <form action = "/getNotes" method="POST" class="col-12 text-center">
+         <button type="submit" class=" col-md-6 card text-center p-3 bg-light rounded justify-content-center align-items-center " style="width: 80%;">
+         <input type="hidden" class="form-control" name="bookName" value = "<%=result[i].name %>" placeholder="Name">
+         <%= result[i].name %>
+         </button>
+      </form>
+      <% } %>
+      <% } %>
+      <br>
       <div class = "text-center ">
          <a title = "Create Book Entry" href="/BookEntryForm"> <i class="fas fa-pencil-alt fa-2x" title="Create Book Entry"></i>  </a>
       </div>
-
-
-
 </html>
-
 <script>
-$(document).ready(function(){
-  $("button").click(function(){
+   $(document).ready(function(){
+     $("button").click(function(){
 
-      $("*").css("background-color", "white");
-      $("*").css("color", "white");
-      $(".darkMode").css("background-color", "white");
-      $(".darkMode").css("color", "black");
 
-  });
-});
+     });
+   });
 </script>
