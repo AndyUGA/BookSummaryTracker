@@ -12,7 +12,6 @@ module.exports = function(app, db) {
     res.render("Homepage");
   });
 
-  //Display list of books being read by user (ListOfBooks.ejs)
   app.get("/:fileName", (req, res) => {
     const fileName = req.params.fileName;
     console.log("fileName is " + fileName);
@@ -33,8 +32,8 @@ module.exports = function(app, db) {
   });
 
   //Dislay notes for book entry
-  app.post("/getNotes", (req, res) => {
-    const name = req.body.bookName;
+  app.get("/:name/getNotes", (req, res) => {
+    const name = req.params.name;
     const pageNumber = req.params.pageNumber;
 
     //Find info about book summary based on the object id

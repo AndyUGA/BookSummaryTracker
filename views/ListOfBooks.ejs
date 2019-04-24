@@ -18,18 +18,17 @@
          -->
       <br><br><br>
       <h2 class = "text-center"> Current Books </h2>
-      <br>
-      <% for(var i=0; i < result.length; i++) { %>
-      <%if (result[i].name != 'system.indexes') { %>
-      <form action = "/getNotes" method="POST" class="col-12 text-center">
-         <button type="submit" class=" col-md-6 card text-center p-3 bg-light rounded justify-content-center align-items-center " style="width: 80%;">
-         <input type="hidden" class="form-control" name="bookName" value = "<%=result[i].name %>" placeholder="Name">
+     <br>
+     <% for(var i=0; i < result.length; i++) { %>
+     <%if (result[i].name != 'system.indexes') { %>
+       <div class=" col-md-6 card text-center p-3 bg-light rounded justify-content-center align-items-center " style="width: 80%;">
+         <a  class = "darkMode cardText" href="/<%=result[i].name%>/getNotes/">
          <%= result[i].name %>
-         </button>
-      </form>
-      <% } %>
-      <% } %>
-      <br>
+         </a>
+         </div>
+   <% } %>
+   <% } %>
+ <br>
       <div class = "text-center ">
          <a title = "Create Book Entry" href="/BookEntryForm"> <i class="fas fa-pencil-alt fa-2x" title="Create Book Entry"></i>  </a>
       </div>
