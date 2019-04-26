@@ -41,16 +41,12 @@ html {
   align: right;
 }
 
-.testbg {
-  background-image: url("Images/mountain3.jpg");
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.bookList {
+  width: 50%;
 }
 
-.testbg2 {
-  background-image: url("Images/landscape.jpg");
+.testbg {
+  background-image: url("Images/mountain.jpg");
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
