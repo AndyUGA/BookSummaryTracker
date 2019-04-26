@@ -2,13 +2,22 @@
   font-family: "Helvetica-light", "Arial", sans-serif;
 }
 
+.start {
+  color: #695e88;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.start:hover {
+  color: #695e88;
+}
+
 .homepage {
   background-color: none;
 }
 
 button {
   border-color: #f8f9fa;
-
   background-color: #f8f9fa;
 }
 
