@@ -46,7 +46,7 @@ module.exports = function(app, db) {
         if (err) {
           res.send({ error: " An error has occurred" });
         } else {
-          res.render("BookNotes", { BookInfo: BookInfo, name: name });
+          res.render("BookNotes", { BookInfo: BookInfo, name: name, mode: "view" });
         }
       });
   });
@@ -65,7 +65,7 @@ module.exports = function(app, db) {
         if (err) {
           res.send({ error: " An error has occurred" });
         } else {
-          res.render("BookNotes", { BookInfo: BookInfo, name: name });
+          res.render("BookNotes", { BookInfo: BookInfo, name: name, mode: "read" });
         }
       });
   });

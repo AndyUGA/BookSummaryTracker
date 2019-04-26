@@ -38,9 +38,16 @@
   <br>
   <div class = "text-center">
 
+    <%if (mode == "view") { %>
      <a title = "Create note" href="/createNoteForm/<%=name%>"> <i class="fas fa-plus-circle fa-2x"></i></a>
 
+     <br><br>
+      <a title = "Read Mode" href="/<%=name%>/getNotes/read"> <i class="fas fa-book-reader fa-2x"></i></i></a>
+      <% } %>
 
+        <%if (mode == "read") { %>
+      <a title = "View Mode" href="/<%=name%>/getNotes"> <i class="fas fa-user-edit fa-2x"></i></i></i></a>
+        <% } %>
     <br>
 
     </div>
@@ -48,11 +55,18 @@
 
   <% for(var i=0; i < BookInfo.length; i++) { %>
             <div class=" col-md-6 card p-3 bg-light rounded  align-items-center " style="width: 80%;">
+                   <%if (mode == "view") { %>
                     <div class = "text-right darkMode cardText"> <%= BookInfo.length - i  %> </div>
+                    <% } %>
+                    <%if (mode == "read") { %>
+                     <div class = "text-right darkMode cardText"> <%= i + 1%> </div>
+                     <% } %>
                     <br>
                     <h5 class=" darkMode text-center cardText">   <%= BookInfo[i].content%> </h5>
                     <div class = "text-center cardText">
+                      <%if (mode == "view") { %>
                     <a title = "Edit note" class = "darkMode" href="/updateBookNote/<%= BookInfo[i]._id%>/<%=name%>" > <i class="fas fa-edit"></i> </a>
+                     <% } %>
                     <div class = "timestamp ">
                     <%= BookInfo[i].created %>
                   </div>
