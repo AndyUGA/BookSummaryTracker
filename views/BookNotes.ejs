@@ -30,11 +30,12 @@
 
 
 <div class="table-responsive text-center">
+    <%if (mode == "view") { %>
   <form action="/<%=name%>/getNotes" method = "POST">
      <input  type="text" placeholder=" Search Notes" name="noteQuery">
      <button type="submit"><i class="fa fa-search"></i></button>
   </form>
-
+    <% } %>
   <br>
   <div class = "text-center">
 
