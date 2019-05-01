@@ -20,4 +20,4 @@ A web application that allows users to create book entries and add notes with ea
 - JavaScript
 
 ---------------------------------------------------------------------------------------------------------------------------
-[Live Preview](https://jagged-fine.glitch.me)
+[Live Preview](https://rdr.andytruong.dev)
